@@ -6,6 +6,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 // All paths start with '/api/pokemon'
 
 router.get('/', pokemonCtrl.searchApi);
+router.get('/:pokemonId', pokemonCtrl.getBio);
 
 
 module.exports = router;

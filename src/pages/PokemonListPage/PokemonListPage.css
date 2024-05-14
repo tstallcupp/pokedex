@@ -1,0 +1,10 @@
+
+
+.pokemon-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokemon-card {
+    border: 2px solid black;
+}
