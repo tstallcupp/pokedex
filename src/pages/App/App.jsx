@@ -15,7 +15,7 @@ export default function App() {
   const [user, setUser] = useState(getUser());
 
   const [ pokemonList, setPokemonList ] = useState([])
-  const [ pokemonCard, setPokemonCard ] = useState([])
+  const [ pokemonCard, setPokemonCard ] = useState(null)
 
     useEffect(() => {
         async function getAll() {
@@ -23,7 +23,15 @@ export default function App() {
             setPokemonList(pokemon);
         }
         getAll();
-    }, [])
+    }, []);
+
+    const handleOnPokemonSelect = (pokemon) => {
+      setPokemonCard(pokemon);
+    }
+
+    function formatPokemonId(id) {
+      return `#${id.toString().padStart(4,'0')}`;
+    }
 
   return (
     <main className="App">
@@ -32,8 +40,8 @@ export default function App() {
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
-              <Route path="/" element={<PokemonList pokemonList={pokemonList} setPokemonCard={setPokemonCard} />} />
-              <Route path="/pokemon/:pokemonId" element={<PokemonDetailPage pokemonList={pokemonList} pokemonCard={pokemonCard}/>} />
+              <Route path="/" element={<PokemonList pokemonList={pokemonList} formatPokemonId={formatPokemonId} onPokemonSelect={handleOnPokemonSelect} />} />
+              <Route path="/pokemon/:pokemonId" element={<PokemonDetailPage pokemonCard={pokemonCard} formatPokemonId={formatPokemonId}/>} />
               {/* <Route path="/orders" element={<OrderHistoryPage />} /> */}
             </Routes>
           </>

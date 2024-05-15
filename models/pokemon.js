@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const pokemonSchema  = new Schema({
     name: { type: String, required: true },
+    bio: type: String,
+    
     
 })
 module.exports = mongoose.model('Pokemon', pokemonSchema);

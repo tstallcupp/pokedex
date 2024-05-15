@@ -1,24 +1,25 @@
 import { Link } from 'react-router-dom';
 import './PokemonListPage.css';
 
-export default function PokemonList({ pokemonList, setPokemonCard }){
+export default function PokemonList({ pokemonList, formatPokemonId, onPokemonSelect }){
 
     function handleSelectPokemon(pokemon){
-        setPokemonCard(pokemon)
+        onPokemonSelect(pokemon);
+        // console.log(pokemon)
     }
     return(
-        <div className="pokemon-grid">
+        <ul className="pokemon-grid">
             {pokemonList.map((pokemon, idx)=> (
                 <>
-                <Link to={`/pokemon/${ pokemon.id }`} onClick={handleSelectPokemon} key={idx} >
-                    <div className="pokemon-card" key={idx}>
+                <Link to={`/pokemon/${ pokemon.id }`} onClick={() => handleSelectPokemon(pokemon)} key={idx} >
+                    <li className="pokemon-card" key={idx}>
                         <h3>{pokemon.name}</h3>
-                        <span># {pokemon.id}</span>
+                        <span>{formatPokemonId(pokemon.id)}</span>
                         <img src={pokemon.sprites.front_default} alt="" key={idx}/>
-                    </div>
+                    </li>
                 </Link>
                 </>
             ))}
-        </div>
+        </ul>
     )
 }

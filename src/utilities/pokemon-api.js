@@ -5,6 +5,6 @@ export async function getPokemon() {
   return sendRequest(BASE_URL);
 }
 
-export async function getBio(){
-  return sendRequest(BASE_URL);
+export async function getBio(pokemonId){
+  return sendRequest(`${BASE_URL}/${pokemonId}`);
 }
