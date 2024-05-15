@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const pokemonSchema  = new Schema({
-    name: { type: String, required: true },
-    pokemonId: { type: Number, required: true },
+    name: String,
+    pokemonId: String,
     bio: String,
-    abilities: String,
-    type: String,
+    abilities: [],
+    type: [],
+    height: Number,
+    weight: Number,
     favorites: [{
         type: Schema.Types.ObjectId,
         ref: 'User'

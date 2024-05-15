@@ -1,13 +1,23 @@
 
-
 .pokemon-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, .5fr); 
+    grid-template-rows: auto; 
+    gap: 10px; 
+    list-style-type: none; 
+    padding: 0; 
+    margin: 5px; 
 }
 
 .pokemon-card {
-    border: 2px solid black;
-    text-decoration: none;
-    list-style-type: none;
-    color: black;
+    border: 1px solid #ccc; 
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9; 
+    border-radius: 8px; 
+    transition: transform 0.2s; 
+}
+
+.pokemon-card:hover {
+    transform: scale(1.05); 
 }

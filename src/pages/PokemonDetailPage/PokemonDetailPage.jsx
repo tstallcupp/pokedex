@@ -18,6 +18,24 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
     if (!pokemonCard) {
         return <div>Loading...</div>;
     }
+
+    const handleFavorite = async (pokemonCard) => {
+        console.log(pokemonCard)
+        const pokemonProperties = {
+            name: pokemonCard.name,
+            pokemonId: pokemonCard.id,
+            bio: pokemonBio,
+            abilities: pokemonCard.abilities,
+            type: pokemonCard.types,
+            height: pokemonCard.height,
+            weight: pokemonCard.weight 
+          }
+        try {
+            await pokemonApi.addFavoritePokemon(pokemonProperties);
+        }catch (error) {
+            console.log('Error favoriting Pokemon', error);
+        }
+    }
     return (
         <>
         <div>
@@ -31,6 +49,7 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
             <img src={pokemonCard.sprites.front_default} alt=""/>
             <p>{formatPokemonId(pokemonCard.id)}</p>
             <p>{pokemonBio}</p>
+            <button onClick={()=>handleFavorite(pokemonCard)}>ADD TO FAVORITES</button>
         </div>
         </>
     )

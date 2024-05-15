@@ -8,3 +8,7 @@ export async function getPokemon() {
 export async function getBio(pokemonId){
   return sendRequest(`${BASE_URL}/${pokemonId}`);
 }
+
+export async function addFavoritePokemon(pokemonProperties){
+  return sendRequest(BASE_URL, 'POST', {pokemonProperties});
+}

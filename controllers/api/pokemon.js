@@ -8,7 +8,21 @@ const pokemonSpeciesApi = 'https://pokeapi.co/api/v2/pokemon-species'
 module.exports = {
  searchApi,
  getBio,
+ addFavoritePokemon,
 };
+
+async function addFavoritePokemon(req, res) {
+    console.log(req.body.pokemonProperties.pokemonId)
+    let favoritePokemon = await Pokemon.findOne({name: req.body.pokemonProperties.name});
+    console.log("before create-----",favoritePokemon)
+    if (!favoritePokemon) {
+        favoritePokemon = new Pokemon(req.body.pokemonProperties);
+    } else if (favoritePokemon.favorites.includes(req.user._id)) return; 
+    // console.log(favoritePokemon)
+    favoritePokemon.favorites.push(req.user._id);
+    await favoritePokemon.save();
+    res.json(favoritePokemon);
+}
 
 async function searchApi(req, res){
     const pokemonList = await fetch(`${pokemonApi}&offset=${0}`).then(res => res.json());
@@ -27,5 +41,4 @@ async function getBio(req, res) {
     const cleanedFlavorText = flavorText.replace(/[\n+\f]/g, ' ');
     // console.log(pokemonSpecies)
     res.json(cleanedFlavorText);
-
 }

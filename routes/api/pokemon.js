@@ -7,6 +7,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.get('/', pokemonCtrl.searchApi);
 router.get('/:pokemonId', pokemonCtrl.getBio);
+router.post('/', pokemonCtrl.addFavoritePokemon);
 
 
 module.exports = router;
