@@ -11,11 +11,12 @@ export default function PokemonList({ pokemonList, formatPokemonId, onPokemonSel
         <ul className="pokemon-grid">
             {pokemonList.map((pokemon, idx)=> (
                 <>
-                <Link to={`/pokemon/${ pokemon.id }`} onClick={() => handleSelectPokemon(pokemon)} key={idx} >
-                    <li className="pokemon-card" key={idx}>
+                <Link className="pokemon-card" to={`/pokemon/${ pokemon.id }`} onClick={() => handleSelectPokemon(pokemon)} key={idx} >
+                    <li key={idx}>
                         <h3>{pokemon.name}</h3>
                         <span>{formatPokemonId(pokemon.id)}</span>
-                        <img src={pokemon.sprites.front_default} alt="" key={idx}/>
+                        {/* <img src={pokemon.sprites.front_default} alt="" key={idx}/> */}
+                        <img src={`https://img.pokemondb.net/sprites/home/normal/${pokemon.name}.png`} alt="Metapod" />
                     </li>
                 </Link>
                 </>

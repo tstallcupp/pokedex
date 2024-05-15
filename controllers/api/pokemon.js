@@ -24,8 +24,8 @@ async function getBio(req, res) {
     const pokemonSpecies = await fetch(`${pokemonSpeciesApi}/${req.params.pokemonId}`).then(res => res.json()).then(data => data);
 
     const flavorText = pokemonSpecies.flavor_text_entries[0].flavor_text;
-    const cleanedFlavorText = flavorText.replace(/[\n+\f]/g, '');
-
+    const cleanedFlavorText = flavorText.replace(/[\n+\f]/g, ' ');
+    // console.log(pokemonSpecies)
     res.json(cleanedFlavorText);
 
 }

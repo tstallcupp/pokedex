@@ -21,6 +21,12 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
     return (
         <>
         <div>
+        <img
+        className="card-img-top"
+        src={`https://img.pokemondb.net/artwork/large/${pokemonCard.name}.jpg`}
+        height="200px"
+        alt="pokemoncard"
+      />
             <h3>{pokemonCard.name}</h3>
             <img src={pokemonCard.sprites.front_default} alt=""/>
             <p>{formatPokemonId(pokemonCard.id)}</p>
