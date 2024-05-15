@@ -15,7 +15,7 @@ export default function PokemonList({ pokemonList, formatPokemonId, onPokemonSel
                     <li key={idx}>
                         <h3>{pokemon.name}</h3>
                         <span>{formatPokemonId(pokemon.id)}</span>
-                        {/* <img src={pokemon.sprites.front_default} alt="" key={idx}/> */}
+                        <img src={pokemon.sprites.front_default} alt="" key={idx}/>
                         <img src={`https://img.pokemondb.net/sprites/home/normal/${pokemon.name}.png`} alt="Metapod" />
                     </li>
                 </Link>
