@@ -46,13 +46,20 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
         }
     }
 
-    const getAbilities = function(pokemonCard){
+    const getAbilities = function(pokemonCard) {
         return pokemonCard.abilities.map((abilityObj, idx) => {
             const { name } = abilityObj.ability;
-            return <p>{ name }</p>
+            return <li>{ name }</li>
         })
     }
-    console.log(pokemonCard.abilities)
+
+    const getType = function(pokemonCard) {
+        return pokemonCard.types.map((typeObj, idx) => {
+            const { name } = typeObj.type;
+            return <li>{ name }</li>
+        })
+    }
+    console.log(pokemonCard)
 
     return (
         <>
@@ -63,7 +70,11 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
                 <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
                 <p>{formatPokemonId(pokemonCard.id)}</p>
                 <p>{pokemonBio}</p>
-                <div>{getAbilities(pokemonCard)}</div>
+                <ul>{getAbilities(pokemonCard)}</ul>
+                <ul>
+                    <li>Height: {(pokemonCard.height / 10).toFixed(1) } m.</li>
+                    <li>Weight: {(pokemonCard.weight / 10).toFixed(1) } kg.</li>
+                </ul>
 
             </div>
 
