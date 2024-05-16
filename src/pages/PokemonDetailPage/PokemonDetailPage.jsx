@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import * as pokemonApi from '../../utilities/pokemon-api';
 
 export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
-    // console.log("pokemonCard: ", pokemonCard)
     let { pokemonId } = useParams();
-    
     const [pokemonBio, setPokemonBio ] = useState('');
+
+
     useEffect(()=> {
         async function getPokemonBio() {
             const bio = await pokemonApi.getBio(pokemonId);
@@ -46,14 +46,26 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
         }
     }
 
+    const getAbilities = function(pokemonCard){
+        pokemonCard.abilities.map((abilityObj, idx) => {
+            const { name } = abilityObj.ability;
+            console.log("ability name: ", name)
+        })
+    }
+    console.log(pokemonCard.abilities)
+
     return (
         <>
         <div>
             <img src={`https://img.pokemondb.net/sprites/home/normal/${pokemonCard.name}.png`} alt={`${pokemonCard.name}`} />
-            <h3>{pokemonCard.name}</h3>
-            <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
-            <p>{formatPokemonId(pokemonCard.id)}</p>
-            <p>{pokemonBio}</p>
+            <div className="pokemon-info">
+                <h3>{pokemonCard.name}</h3>
+                <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
+                <p>{formatPokemonId(pokemonCard.id)}</p>
+                <p>{pokemonBio}</p>
+                <p>{getAbilities(pokemonCard)}</p>
+            </div>
+
             <div className='favorite-btn'>
               <div className='heart-bg'>
                 <div className='heart-icon'>
