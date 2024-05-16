@@ -12,3 +12,10 @@ export async function getBio(pokemonId){
 export async function addFavoritePokemon(pokemonProperties){
   return sendRequest(BASE_URL, 'POST', {pokemonProperties});
 }
+export async function getPokemonParty(){
+  return sendRequest(`${BASE_URL}/pokemonParty`);
+}
+
+export async function removeFavoritePokemon(pokemonId) {
+  return sendRequest(`${BASE_URL}/pokemonParty/remove`, 'POST', { pokemonId });
+}

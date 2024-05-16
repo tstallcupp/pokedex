@@ -2,37 +2,36 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.favorite-btn .heart-icon {
+  height: 100px;
+  width: 100px;
+  background: url('../../../public/images/heart.png');
+  background-position: left;
+  cursor: pointer;
+  position: absolute;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.favorite-btn .heart-bg {
+  background-color: rgba(255, 192, 200, 0);
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transition: all 100ms ease;
 }
 
-.App-link {
-  color: #61dafb;
+.favorite-btn .heart-bg:hover {
+  background-color: rgba(255, 192, 200, 0.7);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.favorite-btn .heart-icon:hover {
+  animation: favorite-anim 0.7s steps(28) forwards;
+}
+
+@keyframes favorite-anim {
   to {
-    transform: rotate(360deg);
+    background-position: right;
   }
 }

@@ -10,7 +10,6 @@ export default function PokemonList({ pokemonList, formatPokemonId, onPokemonSel
 
     function handleSelectPokemon(pokemon){
         onPokemonSelect(pokemon);
-        // console.log(pokemon)
     }
 
     const handleFavorite = async (pokemon) => {
@@ -29,7 +28,7 @@ export default function PokemonList({ pokemonList, formatPokemonId, onPokemonSel
                             <h3>{pokemon.name}</h3>
                             <span>{formatPokemonId(pokemon.id)}</span>
                             {/* <img src={pokemon.sprites.front_default} alt="" key={idx}/> */}
-                            <img src={`https://img.pokemondb.net/sprites/home/normal/${pokemon.name}.png`} alt={`${pokemon.name}`} />
+                            <img className="card-img-top" src={`https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`} height="200px" alt="pokemoncard"/>
                         </Link>
                         <Link>
                         <button onClick={()=>handleFavorite(pokemon)}>ADD TO FAVORITES</button>

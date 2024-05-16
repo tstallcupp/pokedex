@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import * as pokemonApi from '../../utilities/pokemon-api';
 
 export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
+    // console.log("pokemonCard: ", pokemonCard)
     let { pokemonId } = useParams();
     
     const [pokemonBio, setPokemonBio ] = useState('');
-    console.log(pokemonCard)
     useEffect(()=> {
         async function getPokemonBio() {
             const bio = await pokemonApi.getBio(pokemonId);
@@ -20,7 +20,6 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
     }
 
     const handleFavorite = async (pokemonCard) => {
-        console.log(pokemonCard)
         const pokemonProperties = {
             name: pokemonCard.name,
             pokemonId: pokemonCard.id,
@@ -36,20 +35,32 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
             console.log('Error favoriting Pokemon', error);
         }
     }
+
+    const handleRemoveFavorite = async(pokemonCard) => {
+        try {
+            console.log(pokemonCard.id)
+            let pokemonID = pokemonCard.id
+            await pokemonApi.removeFavoritePokemon(pokemonId);
+        } catch (error) {
+            console.log('Error unfavoritng Pokemon')
+        }
+    }
     return (
         <>
         <div>
-        <img
-        className="card-img-top"
-        src={`https://img.pokemondb.net/artwork/large/${pokemonCard.name}.jpg`}
-        height="200px"
-        alt="pokemoncard"
-      />
+            <img src={`https://img.pokemondb.net/sprites/home/normal/${pokemonCard.name}.png`} alt={`${pokemonCard.name}`} />
             <h3>{pokemonCard.name}</h3>
-            <img src={pokemonCard.sprites.front_default} alt=""/>
+            <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
             <p>{formatPokemonId(pokemonCard.id)}</p>
             <p>{pokemonBio}</p>
+            <div className='favorite-btn'>
+              <div className='heart-bg'>
+                <div className='heart-icon'>
+                </div>
+              </div>
+            </div>
             <button onClick={()=>handleFavorite(pokemonCard)}>ADD TO FAVORITES</button>
+            <button onClick={()=> handleRemoveFavorite(pokemonCard)}>REMOVE FAVORITE</button>
         </div>
         </>
     )

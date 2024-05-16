@@ -9,7 +9,28 @@ module.exports = {
  searchApi,
  getBio,
  addFavoritePokemon,
+ getFavoritesList,
+ removeFavoritePokemon,
 };
+
+async function removeFavoritePokemon(req, res) {
+    try {
+        const pokemon = await Pokemon.findOne({ pokemonId: req.body.pokemonId })
+        console.log(pokemon)
+        pokemon.favorites.remove(req.user._id);
+        await pokemon.save();
+        res.json(pokemon);
+    } catch ( error ) {
+        console.log('Error removing favorite Pokemon', error);
+        res.status(500).json({ message: 'Internal server error'})
+    }
+}
+
+async function getFavoritesList(req, res) {
+    const pokemonParty = await Pokemon.find({ favorites: req.user._id})
+    console.log("Pokemon Party-----------",pokemonParty);
+    res.json(pokemonParty)
+}
 
 async function addFavoritePokemon(req, res) {
     console.log(req.body.pokemonProperties.pokemonId)
@@ -18,7 +39,6 @@ async function addFavoritePokemon(req, res) {
     if (!favoritePokemon) {
         favoritePokemon = new Pokemon(req.body.pokemonProperties);
     } else if (favoritePokemon.favorites.includes(req.user._id)) return; 
-    // console.log(favoritePokemon)
     favoritePokemon.favorites.push(req.user._id);
     await favoritePokemon.save();
     res.json(favoritePokemon);

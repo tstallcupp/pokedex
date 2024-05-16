@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const pokemonSchema  = new Schema({
     name: String,
-    pokemonId: String,
+    pokemonId: Number,
     bio: String,
     abilities: [],
     type: [],
@@ -13,8 +13,5 @@ const pokemonSchema  = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }]
-
-
-    
 })
 module.exports = mongoose.model('Pokemon', pokemonSchema);

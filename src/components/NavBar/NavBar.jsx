@@ -11,7 +11,7 @@ export default function NavBar({ user, setUser }) {
     <nav>
       <Link to="/">Pokemon</Link>
       &nbsp; | &nbsp;
-      {/* <Link to="/pokemon/:id">New Order</Link> */}
+      <Link to="/pokemonParty">My Pokemon Party</Link>
       &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
