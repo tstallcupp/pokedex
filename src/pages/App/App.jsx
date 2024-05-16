@@ -13,8 +13,10 @@ import FavoritesListPage from '../FavoritesListPage/FavoritesListPage';
 export default function App() {
   const [user, setUser] = useState(getUser());
 
-  const [ pokemonList, setPokemonList ] = useState([])
+  const [ pokemonList, setPokemonList ] = useState([]);
   const [ pokemonCard, setPokemonCard ] = useState(null);
+  // const [ favoritesList, setfavoritesList ] = useState([])
+  const [ pokemonParty, setPokemonParty] = useState([]);
 
     useEffect(() => {
         async function getAll() {
@@ -44,8 +46,19 @@ export default function App() {
                 formatPokemonId={formatPokemonId} 
                 onPokemonSelect={handleOnPokemonSelect} 
               />}/>
-              <Route path="/pokemon/:pokemonId" element={<PokemonDetailPage pokemonCard={pokemonCard} formatPokemonId={formatPokemonId}/>} />
-              <Route path="/pokemonParty" element={<FavoritesListPage formatPokemonId={formatPokemonId}/>} />
+
+              <Route path="/pokemon/:pokemonId" 
+                element={<PokemonDetailPage 
+                  pokemonCard={pokemonCard} 
+                  formatPokemonId={formatPokemonId}/>} 
+                />
+
+              <Route path="/pokemonParty" 
+                element={<FavoritesListPage 
+                  pokemonParty={ pokemonParty }
+                  setPokemonParty={ setPokemonParty }
+                  formatPokemonId={ formatPokemonId }/>} 
+                />
             </Routes>
           </>
           :

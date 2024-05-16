@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import * as pokemonApi from '../../utilities/pokemon-api';
 
-export default function FavoritesListPage({ formatPokemonId }) {
-  const [ pokemonParty, setPokemonParty] = useState([])
+export default function FavoritesListPage({ pokemonParty, setPokemonParty, formatPokemonId }) {
+
 
   useEffect(() => {
     async function getFavoritesList() {

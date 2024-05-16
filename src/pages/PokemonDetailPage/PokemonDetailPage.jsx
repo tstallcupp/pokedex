@@ -45,6 +45,7 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
             console.log('Error unfavoriting Pokemon')
         }
     }
+
     return (
         <>
         <div>
