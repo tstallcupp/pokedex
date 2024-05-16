@@ -14,8 +14,9 @@ module.exports = {
 };
 
 async function removeFavoritePokemon(req, res) {
+    console.log(req.body)
     try {
-        const pokemon = await Pokemon.findOne({ pokemonId: req.body.pokemonId })
+        const pokemon = await Pokemon.findOne({ pokemonId: req.body.pokemonID })
         console.log(pokemon)
         pokemon.favorites.remove(req.user._id);
         await pokemon.save();

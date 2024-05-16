@@ -40,9 +40,9 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
         try {
             console.log(pokemonCard.id)
             let pokemonID = pokemonCard.id
-            await pokemonApi.removeFavoritePokemon(pokemonId);
+            await pokemonApi.removeFavoritePokemon(pokemonID);
         } catch (error) {
-            console.log('Error unfavoritng Pokemon')
+            console.log('Error unfavoriting Pokemon')
         }
     }
     return (

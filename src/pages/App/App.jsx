@@ -14,7 +14,7 @@ export default function App() {
   const [user, setUser] = useState(getUser());
 
   const [ pokemonList, setPokemonList ] = useState([])
-  const [ pokemonCard, setPokemonCard ] = useState(null)
+  const [ pokemonCard, setPokemonCard ] = useState(null);
 
     useEffect(() => {
         async function getAll() {

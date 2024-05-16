@@ -16,6 +16,6 @@ export async function getPokemonParty(){
   return sendRequest(`${BASE_URL}/pokemonParty`);
 }
 
-export async function removeFavoritePokemon(pokemonId) {
-  return sendRequest(`${BASE_URL}/pokemonParty/remove`, 'POST', { pokemonId });
+export async function removeFavoritePokemon(pokemonID) {
+  return sendRequest(`${BASE_URL}/pokemonParty/remove`, 'POST', { pokemonID });
 }
