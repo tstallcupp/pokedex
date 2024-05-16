@@ -46,13 +46,17 @@ async function addFavoritePokemon(req, res) {
 }
 
 async function searchApi(req, res){
-    const pokemonList = await fetch(`${pokemonApi}&offset=${0}`).then(res => res.json());
-    const pokemonData = pokemonList.results.map(pokemon => {
-        const p = fetch(pokemon.url).then(res => res.json()).then(data => data);
-        return p;
-    });
-    const results = await Promise.all(pokemonData)
-    res.json(results);
+    try {
+        const pokemonList = await fetch(`${pokemonApi}&offset=${0}`).then(res => res.json());
+        const pokemonData = pokemonList.results.map(pokemon => {
+            const p = fetch(pokemon.url).then(res => res.json()).then(data => data);
+            return p;
+        });
+        const results = await Promise.all(pokemonData)
+        res.json(results);
+    } catch ( error ) {
+        res.status(400).json({ message: 'Error fetching Pokemon API'})
+    }
 }
 
 async function getBio(req, res) {

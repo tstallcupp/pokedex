@@ -47,9 +47,9 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
     }
 
     const getAbilities = function(pokemonCard){
-        pokemonCard.abilities.map((abilityObj, idx) => {
+        return pokemonCard.abilities.map((abilityObj, idx) => {
             const { name } = abilityObj.ability;
-            console.log("ability name: ", name)
+            return <p>{ name }</p>
         })
     }
     console.log(pokemonCard.abilities)
@@ -63,7 +63,8 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
                 <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
                 <p>{formatPokemonId(pokemonCard.id)}</p>
                 <p>{pokemonBio}</p>
-                <p>{getAbilities(pokemonCard)}</p>
+                <div>{getAbilities(pokemonCard)}</div>
+
             </div>
 
             <div className='favorite-btn'>
