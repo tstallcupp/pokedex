@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import * as pokemonApi from '../../utilities/pokemon-api';
+import './PokemonDetailPage.css';
 
 export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
     let { pokemonId } = useParams();
@@ -63,29 +64,31 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
 
     return (
         <>
-        <div>
-            <img src={`https://img.pokemondb.net/sprites/home/normal/${pokemonCard.name}.png`} alt={`${pokemonCard.name}`} />
-            <div className="pokemon-info">
-                <h3>{pokemonCard.name}</h3>
-                <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
-                <p>{formatPokemonId(pokemonCard.id)}</p>
-                <p>{pokemonBio}</p>
-                <ul>{getAbilities(pokemonCard)}</ul>
-                <ul>
-                    <li>Height: {(pokemonCard.height / 10).toFixed(1) } m.</li>
-                    <li>Weight: {(pokemonCard.weight / 10).toFixed(1) } kg.</li>
-                </ul>
+        <div className="detail-page-container">
+            <div className="detail-page">
+                <img className="pokemon-go-img" src={`https://img.pokemondb.net/sprites/home/normal/${pokemonCard.name}.png`} alt={`${pokemonCard.name}`} />
+                <div className="pokemon-info">
+                    <h3>{pokemonCard.name}</h3>
+                    <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
+                    <p>{formatPokemonId(pokemonCard.id)}</p>
+                    <p>{pokemonBio}</p>
+                    <ul>{getAbilities(pokemonCard)}</ul>
+                    <ul>
+                        <li>Height: {(pokemonCard.height / 10).toFixed(1) } m.</li>
+                        <li>Weight: {(pokemonCard.weight / 10).toFixed(1) } kg.</li>
+                    </ul>
 
-            </div>
-
-            <div className='favorite-btn'>
-              <div className='heart-bg'>
-                <div className='heart-icon'>
                 </div>
-              </div>
+
+                <div className='favorite-btn'>
+                <div className='heart-bg'>
+                    <div className='heart-icon'>
+                    </div>
+                </div>
+                </div>
+                <button onClick={()=>handleFavorite(pokemonCard)}>ADD TO FAVORITES</button>
+                <button onClick={()=> handleRemoveFavorite(pokemonCard)}>REMOVE FAVORITE</button>
             </div>
-            <button onClick={()=>handleFavorite(pokemonCard)}>ADD TO FAVORITES</button>
-            <button onClick={()=> handleRemoveFavorite(pokemonCard)}>REMOVE FAVORITE</button>
         </div>
         </>
     )

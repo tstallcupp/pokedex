@@ -1,0 +1,16 @@
+
+.detail-page-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.detail-page {
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 60%;
+    justify-items: center;
+    align-items: center;
+}
