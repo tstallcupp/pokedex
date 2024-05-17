@@ -9,6 +9,7 @@ const pokemonSchema  = new Schema({
     type: [],
     height: Number,
     weight: Number,
+    sprites: { front_default: String },
     favorites: [{
         type: Schema.Types.ObjectId,
         ref: 'User'

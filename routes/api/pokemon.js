@@ -5,9 +5,9 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 // All paths start with '/api/pokemon'
 
-router.get('/', pokemonCtrl.searchApi);
 router.get('/pokemonParty', pokemonCtrl.getFavoritesList);
-router.get('/:pokemonId', pokemonCtrl.getBio);
+router.get('/:offset', pokemonCtrl.searchApi);
+router.get('/pokemon/:pokemonId', pokemonCtrl.getBio);
 router.post('/', pokemonCtrl.addFavoritePokemon);
 router.post('/pokemonParty/remove', pokemonCtrl.removeFavoritePokemon);
 

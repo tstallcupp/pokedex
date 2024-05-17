@@ -5,14 +5,20 @@ import * as pokemonApi from '../../utilities/pokemon-api';
 import './PokemonDetailPage.css';
 
 export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
+    const trueId = pokemonCard.pokemonId ? pokemonCard.pokemonId : pokemonCard.id
     let { pokemonId } = useParams();
     const [pokemonBio, setPokemonBio ] = useState('');
+    const [ isFavorited, setIsFavorited ] = useState(false);
 
 
     useEffect(()=> {
         async function getPokemonBio() {
             const bio = await pokemonApi.getBio(pokemonId);
             setPokemonBio(bio);
+            const pokemonParty = await pokemonApi.getPokemonParty();
+            setIsFavorited(!!pokemonParty.find(({ pokemonId: partyId }) => (
+                trueId === partyId
+            )));
         }
         getPokemonBio();
     }, [pokemonId])
@@ -23,15 +29,17 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
     const handleFavorite = async (pokemonCard) => {
         const pokemonProperties = {
             name: pokemonCard.name,
-            pokemonId: pokemonCard.id,
+            pokemonId: trueId,
             bio: pokemonBio,
             abilities: pokemonCard.abilities,
             type: pokemonCard.types,
             height: pokemonCard.height,
-            weight: pokemonCard.weight 
+            weight: pokemonCard.weight,
+            sprites: { front_default : pokemonCard.sprites.front_default }
           }
         try {
             await pokemonApi.addFavoritePokemon(pokemonProperties);
+            setIsFavorited(true);
         }catch (error) {
             console.log('Error favoriting Pokemon', error);
         }
@@ -39,12 +47,16 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
 
     const handleRemoveFavorite = async(pokemonCard) => {
         try {
-            console.log(pokemonCard.id)
-            let pokemonID = pokemonCard.id
-            await pokemonApi.removeFavoritePokemon(pokemonID);
+            await pokemonApi.removeFavoritePokemon(trueId);
+            setIsFavorited(false);
         } catch (error) {
             console.log('Error unfavoriting Pokemon')
         }
+    }
+
+    async function handleFavoriteClick(pokemonCard){
+        if ( isFavorited ) await handleRemoveFavorite(pokemonCard);
+        else { await handleFavorite(pokemonCard) };
     }
 
     const getAbilities = function(pokemonCard) {
@@ -60,7 +72,6 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
             return <li>{ name }</li>
         })
     }
-    console.log(pokemonCard)
 
     return (
         <>
@@ -70,7 +81,7 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
                 <div className="pokemon-info">
                     <h3>{pokemonCard.name}</h3>
                     <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
-                    <p>{formatPokemonId(pokemonCard.id)}</p>
+                    <p>{formatPokemonId(trueId)}</p>
                     <p>{pokemonBio}</p>
                     <ul>{getAbilities(pokemonCard)}</ul>
                     <ul>
@@ -80,14 +91,12 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
 
                 </div>
 
-                <div className='favorite-btn'>
-                <div className='heart-bg'>
-                    <div className='heart-icon'>
+                <div className='favorite-btn'onClick={()=> handleFavoriteClick(pokemonCard)}>
+                    <div className='heart-bg'>
+                        <div className={ `heart-icon${isFavorited? '-favorited' : ''}` }>
+                        </div>
                     </div>
                 </div>
-                </div>
-                <button onClick={()=>handleFavorite(pokemonCard)}>ADD TO FAVORITES</button>
-                <button onClick={()=> handleRemoveFavorite(pokemonCard)}>REMOVE FAVORITE</button>
             </div>
         </div>
         </>

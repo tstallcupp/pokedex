@@ -17,27 +17,34 @@ export default function App() {
   const [ pokemonCard, setPokemonCard ] = useState(null);
   // const [ favoritesList, setfavoritesList ] = useState([])
   const [ pokemonParty, setPokemonParty] = useState([]);
+  const [ offset, setOffset ] = useState(0);
 
-    useEffect(() => {
-        async function getAll() {
-            const pokemon = await pokemonApi.getPokemon();
-            setPokemonList(pokemon);
-        }
-        getAll();
-    }, []);
+  function handleOffset(){
+    setOffset(offset + 50);
+  };
 
-    const handleOnPokemonSelect = (pokemon) => {
-      setPokemonCard(pokemon);
-    }
+  async function getAll() {
+    const pokemon = await pokemonApi.getPokemon(offset);
+    setPokemonList([...pokemonList, ...pokemon]);
+    handleOffset();
+  }
 
-    function formatPokemonId(id) {
-      return `#${id.toString().padStart(4,'0')}`;
-    }
+  useEffect(() => {
+      getAll();
+  }, []);
+
+  const handleOnPokemonSelect = (pokemon) => {
+    setPokemonCard(pokemon);
+  }
+
+  function formatPokemonId(id) {
+    return `#${id.toString().padStart(4,'0')}`;
+  }
 
   return (
     <main className="App">
       { user ?
-          <>
+          <div>
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
@@ -55,12 +62,14 @@ export default function App() {
 
               <Route path="/pokemonParty" 
                 element={<FavoritesListPage 
+                  onPokemonSelect={handleOnPokemonSelect}
                   pokemonParty={ pokemonParty }
                   setPokemonParty={ setPokemonParty }
                   formatPokemonId={ formatPokemonId }/>} 
                 />
             </Routes>
-          </>
+            <button onClick={getAll}>Load More</button>
+          </div >
           :
           <AuthPage setUser={setUser} />
       }

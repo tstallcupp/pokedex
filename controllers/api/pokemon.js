@@ -2,7 +2,7 @@
 const Pokemon = require('../../models/pokemon');
 const fetch = require('node-fetch');
 
-const pokemonApi = 'https://pokeapi.co/api/v2/pokemon?limit=50';
+const pokemonApi = 'https://pokeapi.co/api/v2/pokemon?limit=25';
 const pokemonSpeciesApi = 'https://pokeapi.co/api/v2/pokemon-species'
 
 module.exports = {
@@ -47,7 +47,8 @@ async function addFavoritePokemon(req, res) {
 
 async function searchApi(req, res){
     try {
-        const pokemonList = await fetch(`${pokemonApi}&offset=${0}`).then(res => res.json());
+        console.log('searchAPI: ', req.params)
+        const pokemonList = await fetch(`${pokemonApi}&offset=${req.params.offset}`).then(res => res.json());
         const pokemonData = pokemonList.results.map(pokemon => {
             const p = fetch(pokemon.url).then(res => res.json()).then(data => data);
             return p;

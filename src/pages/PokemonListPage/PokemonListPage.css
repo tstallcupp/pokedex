@@ -1,12 +1,14 @@
 
 .pokemon-grid {
     display: grid;
-    grid-template-columns: repeat(6, .5fr); 
+    grid-template-columns: repeat(6, 1fr); 
     grid-template-rows: auto; 
     gap: 10px; 
     list-style-type: none; 
     padding: 15px; 
     margin: 5px; 
+    justify-content: space-between;
+    /* max-width: 1800px; */
 }
 
 .pokemon-card {
@@ -25,8 +27,12 @@
 .pokemon-card-link {
     text-decoration: none;
     color: #32487E;
+    max-width: 150px;
+    overflow: hidden;
 }
 
 .card-img-top {
     margin: 5px;
+    max-width: 250px;
+    clip: auto;
 }
