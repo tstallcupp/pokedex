@@ -5,7 +5,7 @@ import * as pokemonApi from '../../utilities/pokemon-api';
 import './PokemonDetailPage.css';
 
 export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
-    const trueId = pokemonCard.pokemonId ? pokemonCard.pokemonId : pokemonCard.id
+    const trueId = pokemonCard.pokemonId ? pokemonCard.pokemonId : pokemonCard.id;
     let { pokemonId } = useParams();
     const [pokemonBio, setPokemonBio ] = useState('');
     const [ isFavorited, setIsFavorited ] = useState(false);
@@ -99,7 +99,6 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
                     </div>
 
                 </div>
-                {/* <h3>{pokemonCard.name}</h3> */}
                 <div className='favorite-btn'onClick={()=> handleFavoriteClick(pokemonCard)}>
                     <div className='heart-bg'>
                         <div className={ `heart-icon${isFavorited? '-favorited' : ''}` }>
