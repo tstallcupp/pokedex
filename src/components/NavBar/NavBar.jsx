@@ -9,12 +9,12 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link to="/">Pokemon</Link>
-      &nbsp; | &nbsp;
-      <Link to="/pokemonParty">My Pokemon Party</Link>
+      <div className="welcome-tag">Welcome to the Pokedex, {user.name}!</div>
       &nbsp;&nbsp;
-      <span>Welcome, {user.name}</span>
-      &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
+      <Link className="nav-link" to="/">Pokemon</Link>
+      &nbsp;&nbsp;
+      <Link className="nav-link" to="/pokemonParty">My Pokemon Party</Link>
+      &nbsp;&nbsp;<Link className="nav-link" to="" onClick={handleLogOut}>Log Out</Link>
     </nav>
   );
 }

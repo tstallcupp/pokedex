@@ -6,6 +6,24 @@
   margin: 0;
 }
 
+.welcome-tag {
+  font-size: 35px;
+  color: #5F3D2F;
+  font-weight: 700;
+}
+
+.nav-link {
+  font-size: 25px;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 0 10px;
+  color: #3E3740;
+}
+
+.nav-link:hover {
+  border-bottom: 3px solid rgba(255, 192, 200, 0.7);;
+}
+
 .favorite-btn .heart-icon {
   height: 100px;
   width: 100px;
