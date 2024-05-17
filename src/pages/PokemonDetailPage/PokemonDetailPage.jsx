@@ -6,6 +6,7 @@ import './PokemonDetailPage.css';
 
 export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
     const trueId = pokemonCard.pokemonId ? pokemonCard.pokemonId : pokemonCard.id
+    console.log(trueId)
     let { pokemonId } = useParams();
     const [pokemonBio, setPokemonBio ] = useState('');
     const [ isFavorited, setIsFavorited ] = useState(false);
@@ -22,6 +23,7 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
         }
         getPokemonBio();
     }, [pokemonId])
+
     if (!pokemonCard) {
         return <div>Loading...</div>;
     }

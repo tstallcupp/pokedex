@@ -15,7 +15,6 @@ export default function App() {
 
   const [ pokemonList, setPokemonList ] = useState([]);
   const [ pokemonCard, setPokemonCard ] = useState(null);
-  // const [ favoritesList, setfavoritesList ] = useState([])
   const [ pokemonParty, setPokemonParty] = useState([]);
   const [ offset, setOffset ] = useState(0);
 

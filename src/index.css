@@ -5,7 +5,7 @@
   --tan-2: #E7E2DD;
   --tan-3: #E2D9D1;
   --tan-4: #D3C1AE;
-  --orange: #F67F00;
+  --pink: #CE9EB6;
   --text-light: #968c84;
   --text-dark: #615954;
 }
@@ -75,12 +75,6 @@ code {
   font-size: 2vmin;
 }
 
-/* .form-border {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-} */
-
 .form-container {
   padding: 3vmin;
   background-color: var(--tan-1);
@@ -96,7 +90,7 @@ code {
 }
 
 p.error-message {
-  color: var(--orange);
+  color: var(--pink);
   text-align: center;
 }
 
@@ -124,14 +118,14 @@ input {
 }
 
 input:focus {
-  border-color: var(--orange);
+  border-color: var(--pink);
 }
 
 button, a.button {
   margin: 1vmin;
   padding: 1vmin;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--pink);
   font-size: 2vmin;
   font-weight: bold;
   text-decoration: none;
