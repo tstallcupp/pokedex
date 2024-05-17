@@ -1,4 +1,4 @@
-# Pokedex Portal ![alt text](image.png) ![alt text](image-2.png) ![alt text](image-3.png)
+# Pokedex Portal ![alt text](/wireframe/pokemon-img/image.png) ![alt text](/wireframe/pokemon-img/image-2.png) ![alt text](/wireframe/pokemon-img/image-3.png)
 
 Welcome to the Pokedex Portal, your ultimate destination for all things Pokemon! Dive into a world of creatures, battles, and adventures as you explore the vast universe of Pokemon.
 
@@ -13,7 +13,7 @@ The Pokedex Portal is a comprehensive online encyclopedia inspired by the iconic
 
 
 ## Getting Started 🧠
-To visit ChirpHub, click on the following link: [Pokedex](https://pokedex-318-c2e1eee1e7c3.herokuapp.com/ )
+To visit Pokdex, click on the following link: [Pokedex](https://pokedex-318-c2e1eee1e7c3.herokuapp.com/ )
 You can also check out planning and progress on Trello board: [Pokedex Trello Board](https://trello.com/b/UxnPnlXW/pokedex)
 
 
