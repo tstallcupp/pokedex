@@ -14,10 +14,8 @@ module.exports = {
 };
 
 async function removeFavoritePokemon(req, res) {
-    console.log(req.body)
     try {
         const pokemon = await Pokemon.findOne({ pokemonId: req.body.pokemonID })
-        console.log(pokemon)
         pokemon.favorites.remove(req.user._id);
         await pokemon.save();
         res.json(pokemon);
@@ -29,14 +27,11 @@ async function removeFavoritePokemon(req, res) {
 
 async function getFavoritesList(req, res) {
     const pokemonParty = await Pokemon.find({ favorites: req.user._id})
-    console.log("Pokemon Party-----------",pokemonParty);
     res.json(pokemonParty)
 }
 
 async function addFavoritePokemon(req, res) {
-    console.log(req.body.pokemonProperties.pokemonId)
     let favoritePokemon = await Pokemon.findOne({name: req.body.pokemonProperties.name});
-    console.log("before create-----",favoritePokemon)
     if (!favoritePokemon) {
         favoritePokemon = new Pokemon(req.body.pokemonProperties);
     } else if (favoritePokemon.favorites.includes(req.user._id)) return; 
@@ -47,7 +42,6 @@ async function addFavoritePokemon(req, res) {
 
 async function searchApi(req, res){
     try {
-        console.log('searchAPI: ', req.params)
         const pokemonList = await fetch(`${pokemonApi}&offset=${req.params.offset}`).then(res => res.json());
         const pokemonData = pokemonList.results.map(pokemon => {
             const p = fetch(pokemon.url).then(res => res.json()).then(data => data);
@@ -65,6 +59,5 @@ async function getBio(req, res) {
 
     const flavorText = pokemonSpecies.flavor_text_entries[0].flavor_text;
     const cleanedFlavorText = flavorText.replace(/[\n+\f]/g, ' ');
-    // console.log(pokemonSpecies)
     res.json(cleanedFlavorText);
 }

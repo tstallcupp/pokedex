@@ -9,7 +9,6 @@ export default function FavoritesListPage({ onPokemonSelect, pokemonParty, setPo
     async function getFavoritesList() {
       const favorites = await pokemonApi.getPokemonParty();
       setPokemonParty(favorites);
-      console.log("favorites LIst: ", favorites);
     }
     getFavoritesList();
   }, [])

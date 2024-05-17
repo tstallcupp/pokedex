@@ -2,7 +2,6 @@ import sendRequest from "./send-request";
 const BASE_URL = '/api/pokemon';
 
 export async function getPokemon(offset) {
-  console.log('offset: ', offset)
   return sendRequest(`${BASE_URL}/${ offset }`);
 }
 
