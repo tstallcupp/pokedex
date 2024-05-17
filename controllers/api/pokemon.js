@@ -2,7 +2,7 @@
 const Pokemon = require('../../models/pokemon');
 const fetch = require('node-fetch');
 
-const pokemonApi = 'https://pokeapi.co/api/v2/pokemon?limit=25';
+const pokemonApi = 'https://pokeapi.co/api/v2/pokemon?limit=50';
 const pokemonSpeciesApi = 'https://pokeapi.co/api/v2/pokemon-species'
 
 module.exports = {

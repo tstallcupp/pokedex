@@ -1,4 +1,6 @@
-
+h3 {
+    font-size: 5vh;
+}
 .detail-page-container {
     display: grid;
     justify-items: center;
@@ -7,10 +9,47 @@
 }
 
 .detail-page {
-    border: 2px solid black;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 60%;
     justify-items: center;
     align-items: center;
+    border: 1px solid #ccc; 
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
 }
+
+.pokemon-go-img {
+    background-color: rgba(206, 235, 247, 0.16);
+}
+
+.stats {
+    /* border: 1px solid #ccc;  */
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgba(206, 235, 247, 0.16);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+ul > span {
+    font-weight: bold;
+    font-size: 3vh;
+    color: #32487E;
+}
+
+.pokemon-info {
+    font-size: 2vh;
+}
+
+.pokemon-id {
+    font-size: 3vh;
+}
+
+.pokemon-bio {
+    font-size: 3vh;
+}
+

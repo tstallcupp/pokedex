@@ -45,6 +45,8 @@ export default function App() {
     <main className="App">
       { user ?
           <div>
+            <img src="images/banner.png" alt="" />
+            <img src="images/banner2.png" alt="" />
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}

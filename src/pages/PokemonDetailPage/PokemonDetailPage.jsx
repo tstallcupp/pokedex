@@ -77,20 +77,28 @@ export default function PokemonDetailPage({ pokemonCard, formatPokemonId }){
         <>
         <div className="detail-page-container">
             <div className="detail-page">
-                <img className="pokemon-go-img" src={`https://img.pokemondb.net/sprites/home/normal/${pokemonCard.name}.png`} alt={`${pokemonCard.name}`} />
-                <div className="pokemon-info">
+                <div>
+                    <img className="pokemon-go-img" src={`https://img.pokemondb.net/sprites/home/normal/${pokemonCard.name}.png`} alt={`${pokemonCard.name}`} />
                     <h3>{pokemonCard.name}</h3>
+                </div>
+                <div className="pokemon-info">
+                    <p className="pokemon-id">{formatPokemonId(trueId)}</p>
                     <img src={pokemonCard.sprites.front_default} alt={`${pokemonCard.name}`}/>
-                    <p>{formatPokemonId(trueId)}</p>
-                    <p>{pokemonBio}</p>
-                    <ul>{getAbilities(pokemonCard)}</ul>
-                    <ul>
-                        <li>Height: {(pokemonCard.height / 10).toFixed(1) } m.</li>
-                        <li>Weight: {(pokemonCard.weight / 10).toFixed(1) } kg.</li>
-                    </ul>
+                    <p className="pokemon-bio">{pokemonBio}</p>
+                    <div className="stats">
+                        <ul>
+                            <span>Abilities:</span>
+                            {getAbilities(pokemonCard)}
+                        </ul>
+                        <ul>
+                            <span>Dimensions:</span>
+                            <li>Height: {(pokemonCard.height / 10).toFixed(1) } m.</li>
+                            <li>Weight: {(pokemonCard.weight / 10).toFixed(1) } kg.</li>
+                        </ul>
+                    </div>
 
                 </div>
-
+                {/* <h3>{pokemonCard.name}</h3> */}
                 <div className='favorite-btn'onClick={()=> handleFavoriteClick(pokemonCard)}>
                     <div className='heart-bg'>
                         <div className={ `heart-icon${isFavorited? '-favorited' : ''}` }>
